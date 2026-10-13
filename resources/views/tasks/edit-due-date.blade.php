@@ -1,0 +1,5 @@
+@extends('layouts.app')
+@section('title', __('Change due date').' · Taskboard')
+@section('content')
+<div class="mx-auto max-w-lg"><a href="{{ route('tasks.show', $task) }}" class="text-sm font-semibold text-slate-500">&larr; {{ __('Back to task') }}</a><div class="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900"><h1 class="text-2xl font-bold">{{ __('Change due date') }}</h1><p class="mt-2 text-sm text-slate-500">{{ $task->title }}</p><form action="{{ route('tasks.due-date.update', $task) }}" method="POST" class="mt-6 space-y-5">@csrf @method('PUT')<div><label for="due_date" class="mb-2 block text-sm font-semibold">{{ __('Due date') }}</label><input id="due_date" name="due_date" type="date" value="{{ old('due_date', $task->due_date->toDateString()) }}" required class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 dark:border-slate-700 dark:bg-slate-950">@error('due_date')<p class="mt-1 text-xs text-red-600">{{ $message }}</p>@enderror</div><button class="rounded-xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white">{{ __('Save due date') }}</button></form></div></div>
+@endsection
